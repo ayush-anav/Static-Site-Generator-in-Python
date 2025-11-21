@@ -6,3 +6,5 @@ So we need to:
   4. convert markdown to html
   5. serve for you to read (i know u will read, right? ok)
   6. ?
+
+<img width="1280" height="607" alt="image" src="https://github.com/user-attachments/assets/a93b48bb-1b39-48c0-9902-247bf845de91" />
