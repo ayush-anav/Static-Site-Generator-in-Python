@@ -27,3 +27,30 @@ class HTMLNode():
         
     def __repr__(self):
         return f"HTMLNode({self.tag}, {self.value}, {self.children}, {self.props})"
+
+
+# use keyword arguments, exclude children, that will default to None
+# for props (optional), include default as None
+
+class LeafNode(HTMLNode):
+    
+    def __init__(self, tag, value, props=None):
+        
+        # children = hard coded to None, and we using keyword args.
+        super().__init__(tag=tag, value=value, children=None, props=props)
+        self.tag = tag
+        self.value = value
+        # optional
+        self.props = props
+        
+    def to_html(self):
+        # renders leaf node as string
+        if not self.value:
+            raise ValueError("All leaf nodes must have a value")
+        
+        # if no tag e.g <p> --- </p> just return text
+        if not self.tag:
+            return self.value
+        
+        # render HTML tag
+        return f"<{self.tag}{self.props_to_html()}>{self.value}</{self.tag}>"
