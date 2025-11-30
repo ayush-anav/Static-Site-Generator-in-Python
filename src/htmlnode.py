@@ -38,10 +38,6 @@ class LeafNode(HTMLNode):
         
         # children = hard coded to None, and we using keyword args.
         super().__init__(tag=tag, value=value, children=None, props=props)
-        self.tag = tag
-        self.value = value
-        # optional
-        self.props = props
         
     def to_html(self):
         # renders leaf node as string
@@ -54,3 +50,20 @@ class LeafNode(HTMLNode):
         
         # render HTML tag
         return f"<{self.tag}{self.props_to_html()}>{self.value}</{self.tag}>"
+
+
+class ParentNode(HTMLNode):
+    def __init__(self, tag, children, props=None):
+        super().__init__(tag=tag, value=None, children=children, props=props)
+        
+    def to_html(self):
+        if not self.tag:
+            raise ValueError("Tag not supplied")
+        if not self.children:
+            raise ValueError("ParentNode NEEDS at least 1 child.")
+        
+        inner_html = ""
+        for child in self.children:
+            inner_html += child.to_html()
+        
+        return f"<{self.tag}{self.props_to_html()}>{inner_html}</{self.tag}>"
