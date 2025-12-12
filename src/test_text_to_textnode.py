@@ -1,5 +1,5 @@
 import unittest
-from text_to_textnodes import text_to_textnodes
+from text_to_textnodes import text_to_textnodes, markdown_to_blocks
 from textnode import TextNode, TextType
 
 class Test_Text_to_TextNode(unittest.TestCase):
@@ -21,3 +21,22 @@ class Test_Text_to_TextNode(unittest.TestCase):
         ]
         
         self.assertEqual(res, expected)
+        
+    def test_markdown_to_blocks(self):
+        md = """
+This is **bolded** paragraph
+
+This is another paragraph with _italic_ text and `code` here
+This is the same paragraph on a new line
+
+- This is a list
+- with items
+"""      
+        block = markdown_to_blocks(md)
+        expected_res = [
+            "This is **bolded** paragraph",
+            "This is another paragraph with _italic_ text and `code` here\nThis is the same paragraph on a new line",
+            "- This is a list\n- with items",
+        ]
+        
+        self.assertEqual(block, expected_res)
