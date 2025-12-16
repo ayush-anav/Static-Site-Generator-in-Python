@@ -2,7 +2,7 @@ import unittest
 from text_to_textnodes import text_to_textnodes
 from textnode import TextNode, TextType
 # . is how we get into filders
-from block.markdown_to_blocks import markdown_to_blocks
+from markdown_to_blocks import markdown_to_blocks
 
 
 class Test_Text_to_TextNode(unittest.TestCase):
