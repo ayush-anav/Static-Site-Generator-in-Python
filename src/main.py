@@ -6,5 +6,12 @@
 # main()
 
 import shutil
-
-shutil.copytree("static", "..public")
+import os
+try:
+    shutil.rmtree("public")
+    shutil.copytree("static", "public")
+except:
+    print("missing public folder!")
+    print("creating one")
+    os.mkdir("public")
+    print("run the program again :)")
