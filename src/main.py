@@ -7,11 +7,15 @@
 
 import shutil
 import os
+import sys 
+
 from gencontent import generate_pages_recursive
 
+dir_path_static = "./static"
 dir_path_content = "./content"
-dir_path_public = "./public"
+dir_path_public = "./docs"
 template_path = "./template.html"
+default_basepath = "/"
 
 try:
     shutil.rmtree("public")
@@ -24,9 +28,15 @@ except:
     os.mkdir("public")
     print("run the program again :)")
 
+
+basepath = default_basepath
+if len(sys.argv) > 1:
+    basepath = sys.argv[1]
+        
 print("Generating page...")
 generate_pages_recursive(
     os.path.join(dir_path_content),
     template_path,
-    os.path.join(dir_path_public),
+    dir_path_public,
+    basepath
 )
