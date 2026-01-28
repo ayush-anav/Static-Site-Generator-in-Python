@@ -7,7 +7,7 @@
 
 import shutil
 import os
-from gencontent import generate_page
+from gencontent import generate_pages_recursive
 
 dir_path_content = "./content"
 dir_path_public = "./public"
@@ -25,8 +25,8 @@ except:
     print("run the program again :)")
 
 print("Generating page...")
-generate_page(
-    os.path.join(dir_path_content, "index.md"),
+generate_pages_recursive(
+    os.path.join(dir_path_content),
     template_path,
-    os.path.join(dir_path_public, "index.html"),
+    os.path.join(dir_path_public),
 )
