@@ -18,14 +18,14 @@ template_path = "./template.html"
 default_basepath = "/"
 
 try:
-    shutil.rmtree("public")
-    shutil.copytree("static", "public")
+    shutil.rmtree("docs")
+    shutil.copytree("static", "docs")
 
 except:
     print("missing public folder!")
     print("creating one")
     
-    os.mkdir("public")
+    os.mkdir("docs")
     print("run the program again :)")
 
 
